@@ -1,0 +1,167 @@
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap -sn -PE 192.168.32.100    
+[sudo] password for kali: 
+Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-25 11:03 EST
+Nmap scan report for 192.168.32.100
+Host is up (0.0036s latency).
+Nmap done: 1 IP address (1 host up) scanned in 0.06 seconds
+                                                                                                            
+┌──(kali㉿kali)-[~]
+└─$ crackmapexec -h
+usage: crackmapexec [-h] [-t THREADS] [--timeout TIMEOUT] [--jitter INTERVAL] [--darrell] [--verbose]
+                    {smb,rdp,mssql,winrm,ssh,ldap,ftp} ...
+
+      ______ .______           ___        ______  __  ___ .___  ___.      ___      .______    _______ ___   ___  _______   ______
+     /      ||   _  \         /   \      /      ||  |/  / |   \/   |     /   \     |   _  \  |   ____|\  \ /  / |   ____| /      |
+    |  ,----'|  |_)  |       /  ^  \    |  ,----'|  '  /  |  \  /  |    /  ^  \    |  |_)  | |  |__    \  V  /  |  |__   |  ,----'
+    |  |     |      /       /  /_\  \   |  |     |    <   |  |\/|  |   /  /_\  \   |   ___/  |   __|    >   <   |   __|  |  |
+    |  `----.|  |\  \----. /  _____  \  |  `----.|  .  \  |  |  |  |  /  _____  \  |  |      |  |____  /  .  \  |  |____ |  `----.
+     \______|| _| `._____|/__/     \__\  \______||__|\__\ |__|  |__| /__/     \__\ | _|      |_______|/__/ \__\ |_______| \______|
+
+                                                A swiss army knife for pentesting networks
+                                    Forged by @byt3bl33d3r and @mpgn_x64 using the powah of dank memes
+
+                                           Exclusive release for Porchetta Industries users
+                                                       https://porchetta.industries/
+
+                                                   Version : 5.4.0
+                                                   Codename: Indestructible G0thm0g
+
+options:
+  -h, --help            show this help message and exit
+  -t THREADS            set how many concurrent threads to use (default: 100)
+  --timeout TIMEOUT     max timeout in seconds of each thread (default: None)
+  --jitter INTERVAL     sets a random delay between each connection (default: None)
+  --darrell             give Darrell a hand
+  --verbose             enable verbose output
+
+protocols:
+  available protocols
+
+  {smb,rdp,mssql,winrm,ssh,ldap,ftp}
+    smb                 own stuff using SMB
+    rdp                 own stuff using RDP
+    mssql               own stuff using MSSQL
+    winrm               own stuff using WINRM
+    ssh                 own stuff using SSH
+    ldap                own stuff using LDAP
+    ftp                 own stuff using FTP
+                                                                                                              
+┌──(kali㉿kali)-[~]
+└─$ crackmapexec smb 192.168.32.100
+SMB         192.168.32.100  445    METASPLOITABLE   [*] Unix (name:METASPLOITABLE) (domain:localdomain) (signing:False) (SMBv1:True)
+                                                                                                              
+┌──(kali㉿kali)-[~]
+└─$ crackmapexec mssql 192.168.32.100
+                                                                                                              
+┌──(kali㉿kali)-[~]
+└─$ crackmapexec ssh 192.168.32.100
+SSH         192.168.32.100  22     192.168.32.100   [*] SSH-2.0-OpenSSH_4.7p1 Debian-8ubuntu1
+                                                                                                              
+┌──(kali㉿kali)-[~]
+└─$ crackmapexec ftp 192.168.32.100
+FTP         192.168.32.100  21     192.168.32.100   [*] Banner: (vsFTPd 2.3.4)
+                                                                                                              
+┌──(kali㉿kali)-[~]
+└─$ crackmapexec rdp 192.168.32.100
+                                                                                                              
+                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap 192.168.32.100 -top-port 10 -open
+Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-25 11:21 EST
+Nmap scan report for 192.168.32.100
+Host is up (0.0071s latency).
+Not shown: 3 closed tcp ports (reset)
+PORT    STATE SERVICE
+21/tcp  open  ftp
+22/tcp  open  ssh
+23/tcp  open  telnet
+25/tcp  open  smtp
+80/tcp  open  http
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap done: 1 IP address (1 host up) scanned in 0.59 seconds
+                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ nmap 192.168.32.100 -p- -sV -reason -dns-server ns
+Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-25 11:23 EST
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+
+                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ nmap 192.168.32.100 -p- -sV -reason --system-dns  
+Starting Nmap 7.94 ( https://nmap.org ) at 2024-01-25 11:23 EST
+Stats: 0:02:33 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 96.67% done; ETC: 11:26 (0:00:04 remaining)
+Nmap scan report for 192.168.32.100
+Host is up, received syn-ack (0.017s latency).
+Not shown: 65505 closed tcp ports (conn-refused)
+PORT      STATE SERVICE     REASON  VERSION
+21/tcp    open  ftp         syn-ack vsftpd 2.3.4
+22/tcp    open  ssh         syn-ack OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+23/tcp    open  telnet      syn-ack Linux telnetd
+25/tcp    open  smtp        syn-ack Postfix smtpd
+53/tcp    open  domain      syn-ack ISC BIND 9.4.2
+80/tcp    open  http        syn-ack Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+111/tcp   open  rpcbind     syn-ack 2 (RPC #100000)
+139/tcp   open  netbios-ssn syn-ack Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp   open  netbios-ssn syn-ack Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+512/tcp   open  exec        syn-ack netkit-rsh rexecd
+513/tcp   open  login       syn-ack OpenBSD or Solaris rlogind
+514/tcp   open  tcpwrapped  syn-ack
+1099/tcp  open  java-rmi    syn-ack GNU Classpath grmiregistry
+1524/tcp  open  bindshell   syn-ack Metasploitable root shell
+2049/tcp  open  nfs         syn-ack 2-4 (RPC #100003)
+2121/tcp  open  ftp         syn-ack ProFTPD 1.3.1
+3306/tcp  open  mysql       syn-ack MySQL 5.0.51a-3ubuntu5
+3632/tcp  open  distccd     syn-ack distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+5432/tcp  open  postgresql  syn-ack PostgreSQL DB 8.3.0 - 8.3.7
+5900/tcp  open  vnc         syn-ack VNC (protocol 3.3)
+6000/tcp  open  X11         syn-ack (access denied)
+6667/tcp  open  irc         syn-ack UnrealIRCd
+6697/tcp  open  irc         syn-ack UnrealIRCd
+8009/tcp  open  ajp13       syn-ack Apache Jserv (Protocol v1.3)
+8180/tcp  open  http        syn-ack Apache Tomcat/Coyote JSP engine 1.1
+8787/tcp  open  drb         syn-ack Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
+35246/tcp open  nlockmgr    syn-ack 1-4 (RPC #100021)
+36202/tcp open  java-rmi    syn-ack GNU Classpath grmiregistry
+48393/tcp open  status      syn-ack 1 (RPC #100024)
+51738/tcp open  mountd      syn-ack 1-3 (RPC #100005)
+Service Info: Hosts:  metasploitable.localdomain, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 163.35 seconds
+                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ sudo hping3 --scan known 192.168.32.100
+Scanning 192.168.32.100 (192.168.32.100), port known
+264 ports to scan, use -V to see all the replies
++----+-----------+---------+---+-----+-----+-----+
+|port| serv name |  flags  |ttl| id  | win | len |
++----+-----------+---------+---+-----+-----+-----+
+All replies received. Done.
+Not responding ports: (1 tcpmux) (2 nbp) (4 echo) (6 zip) (7 echo) (9 discard) (11 systat) (13 daytime) (15 netstat) (17 qotd) (19 chargen) (20 ftp-data) (21 ftp) (22 ssh) (23 telnet) (25 smtp) (37 time) (43 whois) (49 tacacs) (53 domain) (67 bootps) (68 bootpc) (69 tftp) (70 gopher) (79 finger) (80 http) (88 kerberos) (102 iso-tsap) (104 acr-nema) (106 poppassd) (110 pop3) (111 sunrpc) (113 auth) (119 nntp) (123 ntp) (135 epmap) (137 netbios-ns) (138 netbios-dgm) (139 netbios-ssn) (143 imap2) (161 snmp) (162 snmp-trap) (163 cmip-man) (164 cmip-agent) (174 mailq) (177 xdmcp) (179 bgp) (199 smux) (209 qmtp) (210 z3950) (213 ipx) (319 ptp-event) (320 ptp-general) (345 pawserv) (346 zserv) (369 rpc2portmap) (370 codaauth2) (371 clearcase) (389 ldap) (427 svrloc) (443 https) (444 snpp) (445 microsoft-d) (464 kpasswd) (465 submissions) (487 saft) (500 isakmp) (512 exec) (513 login) (514 shell) (515 printer) (517 talk) (518 ntalk) (520 route) (538 gdomap) (540 uucp) (543 klogin) (544 kshell) (546 dhcpv6-clie) (547 dhcpv6-serv) (548 afpovertcp) (554 rtsp) (563 nntps) (587 submission) (607 nqs) (623 asf-rmcp) (628 qmqp) (631 ipp) (636 ldaps) (646 ldp) (655 tinc) (706 silc) (749 kerberos-ad) (750 kerberos4) (751 kerberos-ma) (752 passwd-serv) (754 krb-prop) (775 moira-db) (777 moira-updat) (779 moira-ureg) (783 spamd) (853 domain-s) (871 supfilesrv) (873 rsync) (989 ftps-data) (990 ftps) (992 telnets) (993 imaps) (995 pop3s) (1080 socks) (1093 proofd) (1094 rootd) (1099 rmiregistry) (1127 supfiledbg) (1178 skkserv) (1194 openvpn) (1210 predict) (1236 rmtcfg) (1313 xtel) (1314 xtelw) (1352 lotusnote) (1433 ms-sql-s) (1434 ms-sql-m) (1524 ingreslock) (1645 datametrics) (1646 sa-msg-port) (1649 kermit) (1677 groupwise) (1701 l2f) (1812 radius) (1813 radius-acct) (2000 cisco-sccp) (2049 nfs) (2086 gnunet) (2101 rtcm-sc104) (2102 zephyr-srv) (2103 zephyr-clt) (2104 zephyr-hm) (2119 gsigatekeep) (2121 iprop) (2135 gris) (2401 cvspserver) (2430 venus) (2431 venus-se) (2432 codasrv) (2433 codasrv-se) (2583 mon) (2600 zebrasrv) (2601 zebra) (2602 ripd) (2603 ripngd) (2604 ospfd) (2605 bgpd) (2606 ospf6d) (2607 ospfapi) (2608 isisd) (2628 dict) (2792 f5-globalsi) (2811 gsiftp) (2947 gpsd) (3050 gds-db) (3130 icpv2) (3205 isns) (3260 iscsi-targe) (3306 mysql) (3389 ms-wbt-serv) (3493 nut) (3632 distcc) (3689 daap) (3690 svn) (4031 suucp) (4094 sysrqd) (4190 sieve) (4353 f5-iquery) (4369 epmd) (4373 remctl) (4460 ntske) (4500 ipsec-nat-t) (4557 fax) (4559 hylafax) (4569 iax) (4691 mtn) (4899 radmin-port) (4949 munin) (5060 sip) (5061 sip-tls) (5222 xmpp-client) (5269 xmpp-server) (5308 cfengine) (5353 mdns) (5432 postgresql) (5555 rplay) (5556 freeciv) (5666 nrpe) (5667 nsca) (5671 amqps) (5672 amqp) (5680 canna) (6000 x11) (6001 x11-1) (6002 x11-2) (6003 x11-3) (6004 x11-4) (6005 x11-5) (6006 x11-6) (6007 x11-7) (6346 gnutella-sv) (6347 gnutella-rt) (6379 redis) (6444 sge-qmaster) (6445 sge-execd) (6446 mysql-proxy) (6514 syslog-tls) (6566 sane-port) (6667 ircd) (6696 babel) (6697 ircs-u) (7000 bbs) (7001 afs3-callba) (7002 afs3-prserv) (7003 afs3-vlserv) (7004 afs3-kaserv) (7005 afs3-volser) (7007 afs3-bos) (7008 afs3-update) (7009 afs3-rmtsys) (7100 font-servic) (8021 zope-ftp) (8080 http-alt) (8081 tproxy) (8088 omniorb) (8140 puppet) (8990 clc-build-d) (9098 xinetd) (9101 bacula-dir) (9102 bacula-fd) (9103 bacula-sd) (9418 git) (9667 xmms2) (9673 zope) (10000 webmin) (10050 zabbix-agen) (10051 zabbix-trap) (10080 amanda) (10081 kamanda) (10082 amandaidx) (10083 amidxtape) (10809 nbd) (11112 dicom) (11371 hkp) (17001 sgi-cmsd) (17002 sgi-crsd) (17003 sgi-gcd) (17004 sgi-cad) (17500 db-lsp) (22125 dcap) (22128 gsidcap) (22273 wnn6) (24554 binkp) (27374 asp) (30865 csync2) (57000 dircproxy) (60177 tfido) (60179 fido) 
+                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ nc -nvz 192.168.32.100 1-1024
+(UNKNOWN) [192.168.32.100] 514 (shell) open
+(UNKNOWN) [192.168.32.100] 513 (login) open
+(UNKNOWN) [192.168.32.100] 512 (exec) open
+(UNKNOWN) [192.168.32.100] 445 (microsoft-ds) open
+(UNKNOWN) [192.168.32.100] 139 (netbios-ssn) open
+(UNKNOWN) [192.168.32.100] 111 (sunrpc) open
+(UNKNOWN) [192.168.32.100] 80 (http) open
+(UNKNOWN) [192.168.32.100] 53 (domain) open
+(UNKNOWN) [192.168.32.100] 25 (smtp) open
+(UNKNOWN) [192.168.32.100] 23 (telnet) open
+(UNKNOWN) [192.168.32.100] 22 (ssh) open
+(UNKNOWN) [192.168.32.100] 21 (ftp) open
+                                                                                                                                 
+┌──(kali㉿kali)-[~]
+└─$ 
+
+
+
+
+
